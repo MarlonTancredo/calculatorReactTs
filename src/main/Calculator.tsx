@@ -5,7 +5,7 @@ import Display from "../components/Display";
 import { useState } from "react";
 
 const initialState = {
-  displayValue: 0,
+  displayValue: "0",
   clearDisplay: false,
   operation: "",
   values: [0, 0],
@@ -17,6 +17,16 @@ const Calculator = () => {
 
   const handleClear = () => {
     return setState({ ...initialState });
+  };
+
+  const handleResult = (n1: number, op: string, n2: number) => {
+    const result = {
+      res: 0,
+    };
+    if (state.operation === "+") {
+      result.res = n1 + n2;
+    }
+    return result.res;
   };
 
   const handleOperation = (hOperation: any) => {
@@ -32,28 +42,29 @@ const Calculator = () => {
       const currentOperation = state.operation;
 
       const hValues = [...state.values];
-      hValues[0] = eval(`${+hValues[0]} ${currentOperation} ${+hValues[1]} `);
+      hValues[0] = handleResult(hValues[0], currentOperation, hValues[1]);
       hValues[1] = 0;
       setState({
         ...state,
-        displayValue: hValues[0],
+        displayValue: hValues[0].toString(),
         operation: equals ? null : hOperation,
       });
     }
   };
 
-  const handleDigit = (n: any) => {
-    if (n === "." && state.displayValue.includes(".")) {
+  const handleDigit = (e: any) => {
+    if (e === "." && state.displayValue.includes(".")) {
       return;
     }
-    const hClearDisplay = state.displayValue === 0 || state.clearDisplay;
+    const hClearDisplay = state.displayValue === "0" || state.clearDisplay;
     const hCurrentValue = hClearDisplay ? "" : state.displayValue;
-    const hDisplayValue = hCurrentValue + n;
+    const hDisplayValue = hCurrentValue + e;
     setState({
       ...state,
       displayValue: hDisplayValue,
       clearDisplay: false,
     });
+
     // if (n !== ".") {
     //   const i = state.current;
     //   const newValue = parseFloat(hDisplayValue);
