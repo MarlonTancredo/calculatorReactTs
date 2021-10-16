@@ -5,7 +5,6 @@ import Display from "../components/Display";
 import { useState } from "react";
 
 const getResult = (values: number[], op: string | null) => {
-  console.log(values, op);
   const result = {
     res: 0,
   };
@@ -39,7 +38,6 @@ const initialState: stateType = {
 
 const Calculator = () => {
   const [state, setState] = useState({ ...initialState });
-  console.log(state);
 
   const handleClear = () => {
     return setState({ ...initialState });
@@ -60,7 +58,6 @@ const Calculator = () => {
       const hValues = state.values;
       hValues[0] = getResult(state.values, currentOperation);
       hValues[1] = 0;
-      console.log(hValues);
       setState({
         ...state,
         displayValue: hValues[0].toString(),
