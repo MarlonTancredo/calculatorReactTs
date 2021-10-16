@@ -1,9 +1,9 @@
-import "./Calculator.css";
+import './Calculator.css';
 
-import Button from "../components/Button";
-import Display from "../components/Display";
-import { useState } from "react";
-import getResult from "../types/funcGetResult";
+import Button from '../components/Button';
+import Display from '../components/Display';
+import { useState } from 'react';
+import getResult from '../types/funcGetResult';
 
 type stateType = {
   displayValue: string;
@@ -14,9 +14,9 @@ type stateType = {
 };
 
 const initialState: stateType = {
-  displayValue: "0",
+  displayValue: '0',
   clearDisplay: false,
-  operation: "",
+  operation: '',
   values: [0, 0],
   current: 0,
 };
@@ -37,7 +37,7 @@ const Calculator = () => {
         clearDisplay: true,
       });
     } else {
-      const equals = hOperation === "=";
+      const equals = hOperation === '=';
       const currentOperation = state.operation;
 
       const hValues = state.values;
@@ -55,11 +55,11 @@ const Calculator = () => {
   };
 
   const handleDigit = (digit: string) => {
-    if (digit === "." && state.displayValue.includes("0")) {
+    if (digit === '.' && state.displayValue.includes('0')) {
       return;
     }
-    const hClearDisplay = state.displayValue === "0" || state.clearDisplay;
-    const hCurrentValue = hClearDisplay ? "" : state.displayValue;
+    const hClearDisplay = state.displayValue === '0' || state.clearDisplay;
+    const hCurrentValue = hClearDisplay ? '' : state.displayValue;
     const hDisplayValue = hCurrentValue + digit;
     const i = state.current;
     const newValue = parseFloat(hDisplayValue);
