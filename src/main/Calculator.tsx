@@ -3,22 +3,7 @@ import "./Calculator.css";
 import Button from "../components/Button";
 import Display from "../components/Display";
 import { useState } from "react";
-
-const getResult = (values: number[], op: string | null) => {
-  const result = {
-    res: 0,
-  };
-  if (op === "+") {
-    result.res = values[0] + values[1];
-  } else if (op === "-") {
-    result.res = values[0] - values[1];
-  } else if (op === "*") {
-    result.res = values[0] * values[1];
-  } else if (op === "/") {
-    result.res = values[0] / values[1];
-  }
-  return result.res;
-};
+import getResult from "../types/funcGetResult";
 
 type stateType = {
   displayValue: string;
@@ -86,11 +71,6 @@ const Calculator = () => {
       clearDisplay: false,
       values: hValues,
     });
-
-    // if (digit !== ".") {
-    //   hValues[i] = newValue;
-    //   setState({ ...state, values: hValues });
-    // }
   };
   return (
     <div className="calculator">
