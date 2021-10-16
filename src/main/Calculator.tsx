@@ -4,7 +4,32 @@ import Button from "../components/Button";
 import Display from "../components/Display";
 import { useState } from "react";
 
-const initialState = {
+const getResult = (values: number[], op: string | null) => {
+  console.log(values, op);
+  const result = {
+    res: 0,
+  };
+  if (op === "+") {
+    result.res = values[0] + values[1];
+  } else if (op === "-") {
+    result.res = values[0] - values[1];
+  } else if (op === "*") {
+    result.res = values[0] * values[1];
+  } else if (op === "/") {
+    result.res = values[0] / values[1];
+  }
+  return result.res;
+};
+
+type stateType = {
+  displayValue: string;
+  clearDisplay: boolean;
+  operation: null | string;
+  values: number[];
+  current: number;
+};
+
+const initialState: stateType = {
   displayValue: "0",
   clearDisplay: false,
   operation: "",
@@ -14,25 +39,16 @@ const initialState = {
 
 const Calculator = () => {
   const [state, setState] = useState({ ...initialState });
+  console.log(state);
 
   const handleClear = () => {
     return setState({ ...initialState });
   };
 
-  const handleResult = (n1: number, op: string, n2: number) => {
-    const result = {
-      res: 0,
-    };
-    if (state.operation === "+") {
-      result.res = n1 + n2;
-    }
-    return result.res;
-  };
-
-  const handleOperation = (hOperation: any) => {
+  const handleOperation = (hOperation: string) => {
     if (state.current === 0) {
       setState({
-        ...initialState,
+        ...state,
         operation: hOperation,
         current: 1,
         clearDisplay: true,
@@ -41,39 +57,44 @@ const Calculator = () => {
       const equals = hOperation === "=";
       const currentOperation = state.operation;
 
-      const hValues = [...state.values];
-      hValues[0] = handleResult(hValues[0], currentOperation, hValues[1]);
+      const hValues = state.values;
+      hValues[0] = getResult(state.values, currentOperation);
       hValues[1] = 0;
+      console.log(hValues);
       setState({
         ...state,
         displayValue: hValues[0].toString(),
         operation: equals ? null : hOperation,
+        current: equals ? 0 : 1,
+        clearDisplay: !equals,
+        values: hValues,
       });
     }
   };
 
-  const handleDigit = (e: any) => {
-    if (e === "." && state.displayValue.includes(".")) {
+  const handleDigit = (digit: string) => {
+    if (digit === "." && state.displayValue.includes("0")) {
       return;
     }
     const hClearDisplay = state.displayValue === "0" || state.clearDisplay;
     const hCurrentValue = hClearDisplay ? "" : state.displayValue;
-    const hDisplayValue = hCurrentValue + e;
+    const hDisplayValue = hCurrentValue + digit;
+    const i = state.current;
+    const newValue = parseFloat(hDisplayValue);
+    const hValues = [...state.values];
+    hValues[i] = newValue;
     setState({
       ...state,
       displayValue: hDisplayValue,
       clearDisplay: false,
+      values: hValues,
     });
 
-    // if (n !== ".") {
-    //   const i = state.current;
-    //   const newValue = parseFloat(hDisplayValue);
-    //   const hValues = [...state.values];
+    // if (digit !== ".") {
     //   hValues[i] = newValue;
     //   setState({ ...state, values: hValues });
     // }
   };
-
   return (
     <div className="calculator">
       <Display value={state.displayValue}></Display>
