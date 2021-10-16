@@ -1,6 +1,14 @@
 import "./Button.css";
 
-const Button = (props: any) => {
+type Props = {
+  operation: boolean;
+  double: boolean;
+  triple: boolean;
+  click: any;
+  label: string;
+};
+
+const Button = (props: Props) => {
   return (
     <button
       className={`

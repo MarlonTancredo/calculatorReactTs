@@ -95,23 +95,125 @@ const Calculator = () => {
   return (
     <div className="calculator">
       <Display value={state.displayValue}></Display>
-      <Button label="AC" click={handleClear} triple></Button>
-      <Button label="/" click={handleOperation} operation></Button>
-      <Button label="7" click={handleDigit}></Button>
-      <Button label="8" click={handleDigit}></Button>
-      <Button label="9" click={handleDigit}></Button>
-      <Button label="*" click={handleOperation} operation></Button>
-      <Button label="4" click={handleDigit}></Button>
-      <Button label="5" click={handleDigit}></Button>
-      <Button label="6" click={handleDigit}></Button>
-      <Button label="-" click={handleOperation} operation></Button>
-      <Button label="1" click={handleDigit}></Button>
-      <Button label="2" click={handleDigit}></Button>
-      <Button label="3" click={handleDigit}></Button>
-      <Button label="+" click={handleOperation} operation></Button>
-      <Button label="0" click={handleDigit} double></Button>
-      <Button label="." click={handleDigit}></Button>
-      <Button label="=" click={handleOperation} operation></Button>
+      <Button
+        label="AC"
+        click={handleClear}
+        triple={true}
+        operation={false}
+        double={false}
+      ></Button>
+      <Button
+        label="/"
+        click={handleOperation}
+        operation={true}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="7"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="8"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="9"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="*"
+        click={handleOperation}
+        operation={true}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="4"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="5"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="6"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="-"
+        click={handleOperation}
+        operation={true}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="1"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="2"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="3"
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="+"
+        click={handleOperation}
+        operation={true}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="0"
+        click={handleDigit}
+        operation={false}
+        double={true}
+        triple={false}
+      ></Button>
+      <Button
+        label="."
+        click={handleDigit}
+        operation={false}
+        double={false}
+        triple={false}
+      ></Button>
+      <Button
+        label="="
+        click={handleOperation}
+        operation={true}
+        double={false}
+        triple={false}
+      ></Button>
     </div>
   );
 };

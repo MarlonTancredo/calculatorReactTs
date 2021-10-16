@@ -1,7 +1,7 @@
 import "./Display.css";
 
 type Props = {
-  value: any;
+  value: string;
 };
 
 const Display = (props: Props) => {
