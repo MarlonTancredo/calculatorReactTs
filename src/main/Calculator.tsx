@@ -72,6 +72,7 @@ const Calculator = () => {
       values: hValues,
     });
   };
+
   return (
     <div className="calculator">
       <Display value={state.displayValue}></Display>
