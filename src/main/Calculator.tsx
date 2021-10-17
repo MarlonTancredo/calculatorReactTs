@@ -3,7 +3,7 @@ import './Calculator.css';
 import Button from '../components/Button';
 import Display from '../components/Display';
 import { useState } from 'react';
-import getResult from '../types/funcGetResult';
+import getResult from '../types/getResult';
 
 type stateType = {
   displayValue: string;
